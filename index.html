@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        #test {
+            background-color: #57ff76;
+            border: none;
+            color: white;
+            padding: 5% 12%;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 24px;
+        }
+
+        #position_view {
+            font-family: "Calibri Light",serif;
+        }
+
+        .box {
+            padding: 0.5em 1em;
+            margin: 2em 0;
+            margin-right: 100em;
+            font-weight: bold;
+            color: #6091d3;
+            background: #FFF;
+            border: solid 3px #6091d3;
+            border-radius: 10px;
+        }
+
+        .box2 {
+            padding: 0.5em 1em;
+            margin: 2em 0;
+            border: solid 3px #ffadf5;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+
+<button id="test" onclick="test()">Test</button>
+
+<div class="box2">
+<p id="position_view">Click "Test" button...</p>
+</div>
+</div>
+
+<script type="text/javascript">
+    var num = 0;
+    var id;
+
+    function test() {
+        id = navigator.geolocation.watchPosition(test2, function(e) { alert(e.message); }, {"enableHighAccuracy": true, "timeout": 20000, "maximumAge": 2000});
+    }
+
+
+    function test2(position) {
+
+        var geo_text = "緯度:" + position.coords.latitude + "</br>";
+        geo_text += "経度:" + position.coords.longitude + "</br>";
+        geo_text += "高度:" + position.coords.altitude + "</br>";
+        geo_text += "位置精度:" + position.coords.accuracy + "</br>";
+        geo_text += "高度精度:" + position.coords.altitudeAccuracy  + "</br>";
+        geo_text += "移動方向:" + position.coords.heading + "</br>";
+        geo_text += "速度:" + position.coords.speed + "</br>";
+
+
+        document.getElementById('position_view').innerHTML = geo_text;
+    }
+</script>
+</body>
+</html>
